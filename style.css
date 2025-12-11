@@ -1,51 +1,88 @@
 /* --- CONFIGURACIÓN BASE --- */
 body {
-    /* Fondo Azul Oscuro/Verde Bosque (Noche) */
-    background: linear-gradient(135deg, #001f3f 0%, #004d40 100%);
-    color: #f0f0f0; /* Texto claro */
-    font-family: 'Dancing Script', cursive, sans-serif; /* Fuente festiva principal */
+    background: linear-gradient(135deg, #2C6E7E 0%, #001F3F 100%); /* Fondo oscuro original */
+    color: #f0f0f0; /* Texto claro para contraste */
+    font-family: 'Dancing Script', cursive, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
+    position: relative; /* Necesario para los muñecos y efectos */
+    overflow: hidden; /* Evita scroll horizontal por los muñecos */
 }
 
 /* --- CONTENEDOR PRINCIPAL --- */
 .container {
-    /* Fondo semi-transparente para un look moderno */
-    background-color: rgba(255, 255, 255, 0.1); 
-    backdrop-filter: blur(5px); /* Efecto de cristal esmerilado */
+    background-color: rgba(255, 255, 255, 0.1); /* Blanco semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de profundidad */
     padding: 40px 30px;
-    border-radius: 20px;
-    /* Sombra de caja combinada (dorado y rojo) */
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 15px rgba(205, 92, 92, 0.7); 
+    border-radius: 25px; /* Redondez más pronunciada */
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.5), /* Brillo dorado exterior */
+        0 0 15px rgba(205, 92, 92, 0.7); /* Sombra roja suave */
     text-align: center;
     max-width: 550px;
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 10; /* Asegura que esté por encima de los muñecos */
+    /* Borde interno dorado */
+    outline: 2px solid rgba(255, 215, 0, 0.3);
+    outline-offset: -4px;
 }
 
 /* --- TÍTULO Y TEXTO --- */
 .title-decor {
-    font-family: 'Great Vibes', cursive; /* Fuente más elegante para el título */
-    color: #ffd700; /* Color Oro */
+    font-family: 'Great Vibes', cursive;
+    color: #ffd700; /* Oro puro */
     font-size: 4em;
     margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    text-shadow: 
+        0 0 5px rgba(255, 215, 0, 0.8),
+        0 0 15px rgba(255, 215, 0, 0.6); /* Brillo más intenso */
     line-height: 1.1;
+    position: relative;
+    animation: glow 2s ease-in-out infinite alternate; /* Animación de parpadeo sutil */
 }
 
-.icon {
-    font-size: 0.7em;
-    color: #ffffff; /* Blanco Nieve */
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.6); }
+    to { text-shadow: 0 0 10px rgba(255, 215, 0, 0.9), 0 0 25px rgba(255, 215, 0, 0.7); }
+}
+
+/* Iconos de nieve flotantes alrededor del título */
+.title-decor::before,
+.title-decor::after {
+    content: '❄️';
+    position: absolute;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: fall 3s linear infinite;
+}
+
+.title-decor::before {
+    left: -40px;
+    top: 10px;
+}
+
+.title-decor::after {
+    right: -40px;
+    top: 10px;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px); opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0.5; }
 }
 
 .subtitle {
     margin-bottom: 30px;
     font-size: 1.3em;
     color: #e0e0e0;
+    font-style: italic;
 }
 
 /* --- CAMPO DE ENTRADA --- */
@@ -60,54 +97,119 @@ body {
     padding: 15px;
     border: 2px solid #539d53; /* Borde verde pino */
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.95); /* Fondo casi blanco para escribir fácil */
+    background-color: rgba(255, 255, 255, 0.95);
     color: #333;
     font-size: 1.1em;
     text-align: center;
-    /* Usamos una fuente simple para el input para que sea legible */
-    font-family: Arial, sans-serif; 
+    font-family: Arial, sans-serif;
+    transition: border-color 0.3s;
+}
+
+#nombreInput:focus {
+    outline: none;
+    border-color: #ffd700; /* Borde dorado al enfocar */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* --- BOTÓN --- */
 button {
-    background-color: #c93535; /* Rojo Santa */
+    background: linear-gradient(135deg, #FF1818 0%, #b02e2e 100%); /* Degradado rojo */
     color: white;
     border: none;
     padding: 15px 25px;
-    border-radius: 10px;
+    border-radius: 15px; /* Bordes más redondeados */
     cursor: pointer;
     font-size: 1.2em;
     font-weight: 700;
-    transition: background-color 0.3s, transform 0.1s;
+    transition: all 0.3s ease;
     letter-spacing: 1px;
-    box-shadow: 0 4px 0 #a02828; /* Efecto 3D de botón presionado */
+    box-shadow: 0 4px 0 #a02828;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
-    background-color: #a02828;
+    background: linear-gradient(135deg, #b02e2e 0%, #992727 100%);
+    transform: scale(1.05); /* Aumenta ligeramente al pasar el mouse */
+    box-shadow: 0 6px 0 #802020;
 }
 
 button:active {
-    transform: translateY(4px);
-    box-shadow: 0 0 0 #a02828;
+    transform: scale(1.05) translateY(4px);
+    box-shadow: 0 0 0 #802020;
+}
+
+/* Efecto de brillo al hacer clic */
+button:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: clickBurst 0.5s ease-out forwards;
+}
+
+@keyframes clickBurst {
+    to {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
 }
 
 /* --- CAJA DE MENSAJE (RESULTADO) --- */
 .mensaje-box {
     margin-top: 30px;
     padding: 30px;
-    border: 3px solid #ffd700; /* Borde dorado */
-    border-radius: 15px;
+    border-radius: 20px;
     min-height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Fondo degradado verde para resaltar */
-    background: linear-gradient(135deg, #1f4f41 0%, #447748 100%); 
+    background: linear-gradient(135deg, #32CD32 0%, #447748 100%);
     color: #ffffff;
     font-size: 1.4em;
     font-weight: 700;
     text-shadow: 1px 1px 2px #000;
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(#32CD32, #1f4f41), 
+        linear-gradient(45deg, #ffd700 0%, #c93535 50%, #539d53 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: rotateBorder 5s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Partículas brillantes internas */
+.mensaje-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+    pointer-events: none;
+}
+
+/* Animación para el borde degradado */
+@keyframes rotateBorder {
+    to {
+        background-image: linear-gradient(#1f4f41, #1f4f41), 
+                          linear-gradient(405deg, #ffd700 0%, #c93535 50%, #539d53 100%);
+    }
+}
+
+.gift-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
 }
 
 /* --- ANIMACIÓN DEL MENSAJE --- */
@@ -118,4 +220,125 @@ button:active {
 @keyframes fadeInScale {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- ESTILO PARA EL NOMBRE RESALTADO --- */
+.nombre-resaltado {
+    color: #ffcc00; /* Dorado brillante */
+    text-shadow: 0 0 5px rgba(255, 255, 0, 0.8);
+    font-size: 1.1em;
+    padding: 0 5px;
+}
+
+/* --- EFECTO NIEVE REALISTA (SOBRE FONDO OSCURO) --- */
+/* Capa 1: Copos de nieve animados */
+.snow-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    color: #fff; /* Blanco puro */
+    font-size: 1.5em;
+    opacity: 0.9; /* Opacidad alta */
+    text-shadow: 0 0 3px #fff; /* Brillo adicional */
+    animation: fall 10s linear infinite;
+    animation-delay: var(--delay);
+    transform: rotate(var(--rotation));
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Capa 2: Estrellas/copos fijos (para más densidad) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(2px 2px at 80px 10px, #fff, transparent),
+        radial-gradient(3px 3px at 100px 100px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    opacity: 0.3; /* Sutil pero visible */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- MUÑECOS DE NIEVE ANIMADOS (AJUSTADOS PARA TENER BRILLO QUE SIGUE SU FORMA) --- */
+.snowman-unit {
+    position: absolute;
+    width: 120px; /* Aumentado de 100px */
+    height: 120px; /* Aumentado de 100px */
+    background-image: url('nieve.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    z-index: 5; /* Subido de 0 a 5, pero por debajo del contenedor (z-index: 10) */
+    /* Opacidad alta */
+    opacity: 0.95;
+    /* Efecto de brillo que sigue la forma del muñeco */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+}
+
+.snowman-1 {
+    bottom: 5%;
+    left: 5%;
+    animation: sway 10s ease-in-out infinite alternate, float 15s linear infinite;
+}
+
+.snowman-2 {
+    top: 5%;
+    right: 5%;
+    width: 100px; /* Ligeramente más pequeño para perspectiva */
+    height: 100px;
+    animation: sway 12s ease-in-out infinite alternate reverse, float 18s linear infinite;
+}
+
+.snowman-3 {
+    bottom: 5%;
+    right: 5%;
+    animation: sway 8s ease-in-out infinite alternate, float 10s linear infinite;
+}
+
+.snowman-4 {
+    top: 5%;
+    left: 5%;
+    width: 100px;
+    height: 100px;
+    animation: sway 12s ease-in-out infinite alternate reverse, float 18s linear infinite;
+}
+
+/* --- DEFINICIÓN DE ANIMACIONES (MEJORADAS) --- */
+
+/* 1. Balanceo lateral (sway) - Más exagerado */
+@keyframes sway {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); } /* Más distancia */
+    100% { transform: translateX(0); }
+}
+
+/* 2. Flotación vertical suave (float) - Más pronunciada */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); } /* Más altura */
+    100% { transform: translateY(0); }
 }
