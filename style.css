@@ -1,0 +1,121 @@
+/* --- CONFIGURACIÓN BASE --- */
+body {
+    /* Fondo Azul Oscuro/Verde Bosque (Noche) */
+    background: linear-gradient(135deg, #001f3f 0%, #004d40 100%);
+    color: #f0f0f0; /* Texto claro */
+    font-family: 'Dancing Script', cursive, sans-serif; /* Fuente festiva principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.container {
+    /* Fondo semi-transparente para un look moderno */
+    background-color: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(5px); /* Efecto de cristal esmerilado */
+    padding: 40px 30px;
+    border-radius: 20px;
+    /* Sombra de caja combinada (dorado y rojo) */
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 15px rgba(205, 92, 92, 0.7); 
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- TÍTULO Y TEXTO --- */
+.title-decor {
+    font-family: 'Great Vibes', cursive; /* Fuente más elegante para el título */
+    color: #ffd700; /* Color Oro */
+    font-size: 4em;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    line-height: 1.1;
+}
+
+.icon {
+    font-size: 0.7em;
+    color: #ffffff; /* Blanco Nieve */
+}
+
+.subtitle {
+    margin-bottom: 30px;
+    font-size: 1.3em;
+    color: #e0e0e0;
+}
+
+/* --- CAMPO DE ENTRADA --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+#nombreInput {
+    padding: 15px;
+    border: 2px solid #539d53; /* Borde verde pino */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo casi blanco para escribir fácil */
+    color: #333;
+    font-size: 1.1em;
+    text-align: center;
+    /* Usamos una fuente simple para el input para que sea legible */
+    font-family: Arial, sans-serif; 
+}
+
+/* --- BOTÓN --- */
+button {
+    background-color: #c93535; /* Rojo Santa */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.1s;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0 #a02828; /* Efecto 3D de botón presionado */
+}
+
+button:hover {
+    background-color: #a02828;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #a02828;
+}
+
+/* --- CAJA DE MENSAJE (RESULTADO) --- */
+.mensaje-box {
+    margin-top: 30px;
+    padding: 30px;
+    border: 3px solid #ffd700; /* Borde dorado */
+    border-radius: 15px;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Fondo degradado verde para resaltar */
+    background: linear-gradient(135deg, #1f4f41 0%, #447748 100%); 
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* --- ANIMACIÓN DEL MENSAJE --- */
+.mensaje-resaltado {
+    animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
